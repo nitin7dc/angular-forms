@@ -313,7 +313,7 @@ This will create a folder 'reactive' inside src/app/
 - > formGroup is a reactive directive which is taking our "user" as instance of formGroup.
 - > On form submit we are passing the value of form, we can also pass whole form, in that case we will have access to bunch of methods and properties like user.errors, user.pristine, user.dirty,...
 - > formGroupName directive here is for our nested user.name.first and user.name.last input elements. 
-- > On input elements we don't need to add ngModel, name or validations, just adding formControlName we will do. This keep our html more clean. We need to pass first to formControlName to correctly associate with user.name.first inside our class.
+- > On input elements we don't need to add ngModel, name or validations, just adding formControlName will do. This keep our html more clean. We need to pass first to formControlName to correctly associate with user.name.first inside our class.
 
 
 - Validations can be directly added from inside component class. Our updated user object with validations will be as below.
