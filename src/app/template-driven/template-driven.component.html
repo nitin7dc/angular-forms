@@ -1,0 +1,72 @@
+<form #signUpForm="ngForm" novalidate (ngSubmit)="submit()">
+    <div>
+        <label for="first">
+        <input 
+            type="text" 
+            name="first" 
+            placeholder="first name" 
+            #first="ngModel"
+            required
+            [(ngModel)]="user.name.first">
+        </label>
+        <div class="error" *ngIf="first.errors?.required && first.touched">
+            *required
+        </div>
+    </div>
+
+    <div>
+        <label for="last">
+        <input 
+            type="text" 
+            name="last" 
+            placeholder="last name" 
+            #last="ngModel"
+            required
+            [(ngModel)]="user.name.last">
+        </label>
+        <div class="error" *ngIf="last.errors?.required && last.touched">
+            *required
+        </div>
+    </div>
+
+    <div>
+        <label for="email">
+            <input 
+                type="email" 
+                name="email" 
+                placeholder="email" 
+                #userEmail="ngModel"
+                required
+                [(ngModel)]="user.email">
+        </label>
+        <div class="error" *ngIf="userEmail.errors?.required && userEmail.touched">
+            *required
+        </div>
+        <div class="error" *ngIf="userEmail.errors?.email && userEmail.touched">
+            *invalid email
+        </div>
+    </div>
+
+    <div>
+        <label for="password">
+            <input 
+                type="password" 
+                name="password" 
+                placeholder="password" 
+                #password="ngModel"
+                required
+                minlength="8"
+                [(ngModel)]="user.password">
+        </label>
+        <div class="error" *ngIf="password.errors?.required && password.touched">
+            *required
+        </div>
+        <div class="error" *ngIf="password.errors?.minlength && password.touched">
+            *min 8 characters required
+        </div>
+    </div>
+
+    
+    <button type="submit" [disabled]="signUpForm.invalid">submit</button>
+    <button type="reset" (click)="reset(signUpForm)">reset</button>
+</form>

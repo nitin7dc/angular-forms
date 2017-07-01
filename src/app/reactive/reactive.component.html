@@ -1,0 +1,65 @@
+
+<form novalidate [formGroup]="user" (ngSubmit)="submit(user.value)">
+    <div formGroupName="name">
+        <!--first name-->
+        <div>
+            <label>
+                <input 
+                    type="text"
+                    placeholder="first name"
+                    formControlName="first"/>
+            </label>
+            <div *ngIf="user.get('name').get('first').hasError('required') && user.get('name').get('first').touched" class="error">
+                *required
+            </div>
+        </div>
+
+        <!--last name-->
+        <div>
+            <label>
+                <input 
+                    type="text"
+                    placeholder="last name"
+                    formControlName="last"/>
+            </label>
+            <div *ngIf="user.get('name').get('last').hasError('required') && user.get('name').get('last').touched" class="error">
+                *required
+            </div>
+        </div>
+    </div>
+
+    <!--email-->
+    <div>   
+        <label>
+            <input 
+                type="email"
+                placeholder="email"
+                formControlName="email"/>
+        </label>
+        <div *ngIf="user.get('email').hasError('required') && user.get('email').touched" class="error">
+            *required
+        </div>
+        <div *ngIf="user.get('email').hasError('email') && user.get('email').touched" class="error">
+            *invalid email
+        </div>
+    </div>
+
+    <!--password-->
+    <div>   
+        <label>
+            <input 
+                type="password"
+                placeholder="password"                
+                formControlName="password"/>
+        </label>
+        <div *ngIf="user.get('password').hasError('required') && user.get('password').touched" class="error">
+            *required
+        </div>
+        <div *ngIf="user.get('password').hasError('minlength') && user.get('password').touched" class="error">
+            *must be greater than 8 characters
+        </div>
+    </div>
+
+    <button type="submit" [disabled]="user.invalid">submit</button>
+    <button type="reset" (click)="reset()">reset</button>
+</form>
